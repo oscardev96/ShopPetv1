@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {View, Text} from 'react-native';
 
 const App = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>hihi</Text>
+    <View>
+      <Text>jojo</Text>
     </View>
   );
 };

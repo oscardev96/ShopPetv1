@@ -51,3 +51,10 @@ export const FONTS = {
   body4: {fontFamily: 'Poppins-Regular', fontSize: SIZES.body4, lineHeight: 22},
   body5: {fontFamily: 'Poppins-Regular', fontSize: SIZES.body5, lineHeight: 22},
 };
+export const viewBox = {
+  home: ' 0 0 26 25',
+  bell: ' 0 0 25 27',
+  cart: ' 0 0 27 28',
+  user: ' 0 0 25 25 ',
+  chat: ' 0 0 20 20',
+};
