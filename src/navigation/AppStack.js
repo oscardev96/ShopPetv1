@@ -6,7 +6,7 @@ import AuthStack from './AuthStack';
 import LoginScreen from '../screens/Auth/LoginScreen';
 const Stack = createStackNavigator();
 const AppStack = () => {
-  const [isLogin, setisLogin] = useState(true);
+  const [isLogin, setisLogin] = useState(false);
   const [loading, setloading] = useState(false);
 
   return (

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>708297372294-f4dv34k1jpbhi8npgtbf18tijs5ei0di.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.708297372294-f4dv34k1jpbhi8npgtbf18tijs5ei0di</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>708297372294-d9p5v3lmltmoq8bk9mj6aob8usatsdvm.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB5sU1paz_Uowx9e-u9k-pp21T8Dk1uxfI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>708297372294</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.ShopPetv1</string>
+	<key>PROJECT_ID</key>
+	<string>shoppet-79414</string>
+	<key>STORAGE_BUCKET</key>
+	<string>shoppet-79414.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:708297372294:ios:34fb59b715bec22c361707</string>
+</dict>
+</plist>

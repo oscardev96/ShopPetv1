@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "708297372294",
+    "project_id": "shoppet-79414",
+    "storage_bucket": "shoppet-79414.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708297372294:android:773dbf618599a574361707",
+        "android_client_info": {
+          "package_name": "com.shoppetv1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708297372294-d9p5v3lmltmoq8bk9mj6aob8usatsdvm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shoppetv1",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "708297372294-nom6ps938d1ilh6tnohuut184aqbi4ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPpJFCMUZEGCiW0d2FO2_HliYKkr8ADRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708297372294-nom6ps938d1ilh6tnohuut184aqbi4ed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
