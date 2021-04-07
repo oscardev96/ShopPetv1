@@ -15,6 +15,7 @@
 		416447D15F1F4EAEBDA7EB6F /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60CA795800774A99A0555222 /* Poppins-Regular.ttf */; };
 		70526884F44D7380078506AE /* libPods-ShopPetv1-ShopPetv1Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39261E46F67F17E451A51909 /* libPods-ShopPetv1-ShopPetv1Tests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		912C86D1261BBCEE007A31F1 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 912C86D0261BBCEE007A31F1 /* Fonts */; };
 		A8DEFABB7CD7C3FD60447B5F /* libPods-ShopPetv1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D96F47743048A094F0E546 /* libPods-ShopPetv1.a */; };
 		CC1C884273814F17BB6A9F4A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C19520E75D94BCAA6C796DD /* Poppins-Bold.ttf */; };
 /* End PBXBuildFile section */
@@ -33,7 +34,7 @@
 		00E356EE1AD99517003FC87E /* ShopPetv1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopPetv1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ShopPetv1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopPetv1Tests.m; sourceTree = "<group>"; };
-		0A8F08CD5716424D9C625DAD /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../src/assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
+		0A8F08CD5716424D9C625DAD /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../src/assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
 		100AC5CF996E98C97E598338 /* Pods-ShopPetv1-ShopPetv1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopPetv1-ShopPetv1Tests.release.xcconfig"; path = "Target Support Files/Pods-ShopPetv1-ShopPetv1Tests/Pods-ShopPetv1-ShopPetv1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ShopPetv1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopPetv1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ShopPetv1/AppDelegate.h; sourceTree = "<group>"; };
@@ -42,11 +43,12 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ShopPetv1/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ShopPetv1/main.m; sourceTree = "<group>"; };
 		39261E46F67F17E451A51909 /* libPods-ShopPetv1-ShopPetv1Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShopPetv1-ShopPetv1Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C19520E75D94BCAA6C796DD /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../src/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
-		60CA795800774A99A0555222 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		3C19520E75D94BCAA6C796DD /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../src/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		60CA795800774A99A0555222 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		66DF5139AF50EA445F87321B /* Pods-ShopPetv1-ShopPetv1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopPetv1-ShopPetv1Tests.debug.xcconfig"; path = "Target Support Files/Pods-ShopPetv1-ShopPetv1Tests/Pods-ShopPetv1-ShopPetv1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		7D0D6393F987197FDEEC8764 /* Pods-ShopPetv1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopPetv1.debug.xcconfig"; path = "Target Support Files/Pods-ShopPetv1/Pods-ShopPetv1.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ShopPetv1/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		912C86D0261BBCEE007A31F1 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		D995547F7A031825C7FE4A79 /* Pods-ShopPetv1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopPetv1.release.xcconfig"; path = "Target Support Files/Pods-ShopPetv1/Pods-ShopPetv1.release.xcconfig"; sourceTree = "<group>"; };
 		E6D96F47743048A094F0E546 /* libPods-ShopPetv1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShopPetv1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -92,6 +94,7 @@
 		13B07FAE1A68108700A75B9A /* ShopPetv1 */ = {
 			isa = PBXGroup;
 			children = (
+				912C86D0261BBCEE007A31F1 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -110,7 +113,6 @@
 				66DF5139AF50EA445F87321B /* Pods-ShopPetv1-ShopPetv1Tests.debug.xcconfig */,
 				100AC5CF996E98C97E598338 /* Pods-ShopPetv1-ShopPetv1Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -164,7 +166,6 @@
 				60CA795800774A99A0555222 /* Poppins-Regular.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +265,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1B5B841A44A54105801E110E /* Poppins-Black.ttf in Resources */,
+				912C86D1261BBCEE007A31F1 /* Fonts in Resources */,
 				CC1C884273814F17BB6A9F4A /* Poppins-Bold.ttf in Resources */,
 				416447D15F1F4EAEBDA7EB6F /* Poppins-Regular.ttf in Resources */,
 			);
