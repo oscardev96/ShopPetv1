@@ -12,13 +12,22 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
+import {
+  LoginManager,
+  AccessToken,
+  GraphRequestManager,
+  GraphRequest,
+} from 'react-native-fbsdk';
+import Reactotron from 'reactotron-react-native';
 import {Item, Label, Input} from 'native-base';
 import IconF from 'react-native-vector-icons/FontAwesome';
 import Icon from '../../constants/icon';
 import {COLORS, SIZES, FONTS, width, height} from '../../constants/theme';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-
+import {googleLogin} from '../../config/configGoogle';
+import * as authActions from '../../redux/actions/authActions';
+import {useDispatch} from 'react-redux';
 const loginValidationSchema = yup.object().shape({
   email: yup
     .string()
@@ -31,21 +40,16 @@ const loginValidationSchema = yup.object().shape({
 });
 const LoginScreen = ({navigation}) => {
   useEffect(() => {
-    GoogleSignin.configure({
-      scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
-      webClientId:
-        '708297372294-nom6ps938d1ilh6tnohuut184aqbi4ed.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
-      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-      iosClientId:
-        '708297372294-f4dv34k1jpbhi8npgtbf18tijs5ei0di.apps.googleusercontent.com', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
-      googleServicePlistPath: '', // [iOS] optional, if you renamed your GoogleService-Info file, new name here, e.g. GoogleService-Info-Staging
-    });
+    googleLogin;
   }, []);
+  const dispatch = useDispatch();
   const loginGoogle = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      console.log(`userInfo`, userInfo);
+      const {id, email, name, photo} = userInfo.user;
+
+      dispatch(authActions.loginSocial(id, email, name, photo, 'Google'));
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
@@ -56,6 +60,39 @@ const LoginScreen = ({navigation}) => {
       } else {
         // some other error happened
       }
+    }
+  };
+  const loginFacebook = async () => {
+    try {
+      let result = await LoginManager.logInWithPermissions([
+        'public_profile',
+        'email',
+      ]);
+      if (result.isCancelled) {
+        alert('Login was cancelled');
+      } else {
+        let infoRequest = new GraphRequest(
+          '/me?fields=id,name,picture.type(large),email,gender',
+          null,
+          (err, data) => {
+            let typeSocial = 'facebook';
+            dispatch(
+              authActions.loginSocial(
+                data.id,
+                data.email,
+                data.name,
+                data.picture.data.url,
+                'Facebook',
+              ),
+            );
+          },
+        );
+
+        new GraphRequestManager().addRequest(infoRequest).start();
+        const accToken = AccessToken.getCurrentAccessToken();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -74,7 +111,7 @@ const LoginScreen = ({navigation}) => {
         <Formik
           initialValues={{email: '', password: ''}}
           onSubmit={values => {
-            alert(values);
+            dispatch(authActions.login(values.email, values.password));
           }}
           validationSchema={loginValidationSchema}>
           {({
@@ -167,7 +204,9 @@ const LoginScreen = ({navigation}) => {
               size={25}
               color={COLORS.text}
               style={{padding: 10}}
-              onPress={() => {}}
+              onPress={() => {
+                loginFacebook();
+              }}
             />
             <IconF
               name="google"

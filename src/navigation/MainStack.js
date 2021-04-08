@@ -14,6 +14,7 @@ import ProductDetailScreen from '../screens/Shop/ProductDetailScreen';
 import UserScreen from '../screens/Shop/UserScreen';
 import {SIZES, COLORS, width, height, viewBox} from '../constants/theme';
 import Icon from '../constants/icon';
+import {Platform} from 'react-native';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const HomeTab = () => {
@@ -24,6 +25,8 @@ const HomeTab = () => {
       height: height * 0.1,
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
       shadowColor: '#000',
       shadowOffset: {
         width: 0,
@@ -69,13 +72,20 @@ const HomeTab = () => {
       );
     },
   });
+  const cartOptions = {
+    tabBarBadge: 9,
+    tabBarBadgeStyle: {
+      position: 'absolute',
+      top: Platform.OS === 'android' ? 15 : 0,
+    },
+  };
   return (
     <Tab.Navigator
       headerMode={false}
       screenOptions={screenOptions}
       tabBarOptions={tabBarOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Cart" component={CartScreen} />
+      <Tab.Screen name="Cart" component={CartScreen} options={cartOptions} />
       <Tab.Screen name="Notification" component={NotificationScreen} />
       <Tab.Screen name="Chat" component={ChatScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />

@@ -35,7 +35,7 @@ const SignUpScreen = ({navigation}) => {
         <View style={styles.header}>
           <IconF
             onPress={() => {
-              navigation.navigate('Login');
+              navigation.goBack();
             }}
             name="arrow-left"
             size={20}
