@@ -18,6 +18,7 @@ const AppStack = () => {
   const check = async () => {
     let token = await AsyncStorage.getItem('@token');
     if (token) {
+      console.log(token);
       setloading(false);
       dispatch(authActions.setLogin(token));
     }
@@ -31,17 +32,18 @@ const AppStack = () => {
         <ActivityIndicator size="large" color={COLORS.primary} />
       </View>
     );
+  } else {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator headerMode={false}>
+          {isLogin ? (
+            <Stack.Screen name="AppStack" component={HomeStack} />
+          ) : (
+            <Stack.Screen name="Auth" component={AuthStack} />
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
   }
-  return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode={false}>
-        {isLogin ? (
-          <Stack.Screen name="AppStack" component={HomeStack} />
-        ) : (
-          <Stack.Screen name="Auth" component={AuthStack} />
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
 };
 export default AppStack;
