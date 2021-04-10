@@ -198,6 +198,7 @@ const HomeScreen = ({navigation}) => {
           {products && products.length > 0 ? (
             <FlatList
               data={products}
+              removeClippedSubviews={true}
               showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}
               numColumns={typeList === 'col' ? 1 : 2}

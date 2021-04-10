@@ -26,24 +26,17 @@ const AppStack = () => {
 
   const [loading, setloading] = useState(true);
   const isLogin = useSelector(state => state.authReducers.isLogin);
-  if (loading) {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator size="large" color={COLORS.primary} />
-      </View>
-    );
-  } else {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator headerMode={false}>
-          {isLogin ? (
-            <Stack.Screen name="AppStack" component={HomeStack} />
-          ) : (
-            <Stack.Screen name="Auth" component={AuthStack} />
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator headerMode={false}>
+        {isLogin ? (
+          <Stack.Screen name="AppStack" component={HomeStack} />
+        ) : (
+          <Stack.Screen name="Auth" component={AuthStack} />
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 export default AppStack;

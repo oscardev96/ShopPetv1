@@ -355,10 +355,7 @@ const styles = StyleSheet.create({
     width: (width - 30) / 3 + 20,
     alignItems: 'center',
   },
-  wrapModal: {
-    position: 'absolute',
-    top: Platform.OS === 'android' ? height - 350 : height - 280,
-  },
+
   modal: {
     shadowColor: '#000',
     shadowOffset: {
@@ -367,7 +364,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-
+    position: 'absolute',
+    bottom: -5,
     elevation: 9,
     backgroundColor: '#fff',
     width: width,
