@@ -8,13 +8,16 @@ import {
 const initialState = {
   isLoading: false,
   products: [],
-  productDetail: [],
+  productDetail: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_PRODUCT_SUCCESS:
-      return {...state, products: state.products.concat(action.data)};
+      return {
+        ...state,
+        products: action.data,
+      };
     case SET_PRODUCT_DETAIL:
       return {...state, productDetail: [], isLoading: false};
     case GET_PRODUCT_BYID_SUCCESS:
@@ -25,19 +28,19 @@ export default (state = initialState, action) => {
       }
       if (action.category === 'Foods') {
         let newList = state.products.filter(
-          (item) => item.category.name === 'Foods',
+          item => item.category.name === 'Foods',
         );
         return {...state, products: newList};
       }
       if (action.category === 'Toys') {
         let newList = state.products.filter(
-          (item) => item.category.name === 'Toys',
+          item => item.category.name === 'Toys',
         );
         return {...state, products: newList};
       }
       if (action.category === 'Medicine') {
         let newList = state.products.filter(
-          (item) => item.category.name === 'Medicine',
+          item => item.category.name === 'Medicine',
         );
         return {...state, products: newList};
       }

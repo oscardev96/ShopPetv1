@@ -10,26 +10,21 @@ export default class CarouselHome extends Component {
       carouselItems: [
         {
           title: 'item 1',
-          image: '../../../assets/images/slide_1.png',
+          image: require('../../../assets/images/slide_1.png'),
         },
         {
           title: 'Item 2',
-          image: '../../../assets/images/slide_2.png',
+          image: require('../../../assets/images/slide_2.png'),
         },
         {
           title: 'Item 3',
-          image: '../../../assets/images/slide_1.png',
+          image: require('../../../assets/images/slide_1.png'),
         },
       ],
     };
   }
   _renderItem = ({item, index}) => {
-    return (
-      <Image
-        source={require('../../../assets/images/slide_2.png')}
-        resizeMode="cover"
-      />
-    );
+    return <Image source={item.image} resizeMode="cover" />;
   };
   render() {
     return (
@@ -41,6 +36,10 @@ export default class CarouselHome extends Component {
           alignSelf: 'center',
         }}>
         <Carousel
+          autoplay={true}
+          loop={true}
+          enableSnap={true}
+          autoplayInterval={2500}
           layout={'default'}
           ref={ref => (this.carousel = ref)}
           data={this.state.carouselItems}

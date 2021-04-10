@@ -1,8 +1,9 @@
 import {Dimensions} from 'react-native';
 export const COLORS = {
   primary: '#EF882F',
-  background: '#E5E5E5',
+  background: '#FAFAFA',
   text: '#333333',
+  textSecond: '#A7A1A1',
   white: '#FFFFFF',
   black: '#1E1F20',
   lightGray: '#F5F5F6',
@@ -11,7 +12,7 @@ export const COLORS = {
   lightGray4: '#F8F8F9',
   transparent: 'transparent',
   darkgray: '#898C95',
-  border: '#BBBBBB',
+  backgroundSecond: '#E5E5E5',
   puple: '#4A3F81',
   gray: '#999999',
 };
@@ -45,7 +46,7 @@ export const FONTS = {
   h2: {fontFamily: 'Poppins-Bold', fontSize: SIZES.h2, lineHeight: 36},
   h3: {fontFamily: 'Poppins-Bold', fontSize: SIZES.h3, lineHeight: 22},
   h4: {fontFamily: 'Poppins-Bold', fontSize: SIZES.h4, lineHeight: 22},
-  body1: {fontFamily: 'Poppins-Regular', fontSize: SIZES.body1, lineHeight: 36},
+  body1: {fontFamily: 'Poppins-Regular', fontSize: SIZES.h1, lineHeight: 36},
   body2: {fontFamily: 'Poppins-Regular', fontSize: SIZES.body2, lineHeight: 30},
   body3: {fontFamily: 'Poppins-Regular', fontSize: SIZES.body3, lineHeight: 22},
   body4: {fontFamily: 'Poppins-Regular', fontSize: SIZES.body4, lineHeight: 22},

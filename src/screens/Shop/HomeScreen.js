@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+
 import {
   View,
   Text,
@@ -12,19 +13,31 @@ import {
 import {COLORS, SIZES, width, height, FONTS} from '../../constants/theme';
 import Icon from '../../constants/icon';
 import CarouselHome from './components/Carousel';
-
 import IconF from 'react-native-vector-icons/FontAwesome';
 import {useDispatch, useSelector} from 'react-redux';
 import {ActionSheet, Item, Input} from 'native-base';
 import ItemSearch from './components/ItemSearch';
 import API from '../../config/configAPI';
+import * as productActions from '../../redux/actions/productActions';
+import * as userActions from '../../redux/actions/userActions';
+import ProductItem from './components/ProductItem';
+import GridProductItem from './components/GridProductItem';
 var BUTTONS = ['All', 'Foods', 'Toys', 'Medicine', 'Cancel'];
 var CANCEL_INDEX = 4;
 const HomeScreen = ({navigation}) => {
+  useEffect(() => {
+    dispatch(productActions.getProduct(0));
+    dispatch(userActions.getUser());
+  }, []);
+
+  const dispatch = useDispatch();
   const search = useRef(null);
   const [category, setcategory] = useState('All');
   const [searchLoading, setsearchLoading] = useState(false);
   const [searchData, setsearchData] = useState(null);
+  const [typeList, settypeList] = useState('grid');
+
+  const products = useSelector(state => state.productReducers.products);
   const fetchData = values => {
     if (values === '') {
       setsearchData(null);
@@ -38,6 +51,8 @@ const HomeScreen = ({navigation}) => {
         })
         .catch(error => {
           console.log(error);
+          setsearchData(null);
+          setsearchLoading(false);
         });
     }
   };
@@ -48,7 +63,7 @@ const HomeScreen = ({navigation}) => {
     }
     search.current = setTimeout(() => {
       fetchData(values);
-    }, 1500);
+    }, 1000);
   };
 
   return (
@@ -83,8 +98,13 @@ const HomeScreen = ({navigation}) => {
         </View>
         {/* END HEADER */}
         {/* INPUT SEARCH */}
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Item rounded style={styles.search}>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: height * 0.05,
+          }}>
+          <Item rounded style={styles.search} noBorder>
             <IconF
               name="search"
               size={25}
@@ -115,7 +135,9 @@ const HomeScreen = ({navigation}) => {
                     name={item.name}
                     image={item.images[0]}
                     onSelect={() => {
-                      navigation.navigate('ProfileScreen', {id: item._id});
+                      navigation.navigate('ProductDetailScreen', {
+                        id: item._id,
+                      });
                     }}
                   />
                 )}
@@ -129,17 +151,99 @@ const HomeScreen = ({navigation}) => {
           ) : null}
         </View>
         {/* END SEARCH */}
-        <View style={{marginTop: 20, zIndex: -1}}>
+        <View style={{marginTop: 20, zIndex: -1, height: height * 0.15}}>
           <CarouselHome />
         </View>
+        {/* TITLE LIST PRODUCT */}
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingHorizontal: 30,
+            height: height * 0.05,
+            backgroundColor: 'white',
+            alignItems: 'center',
+            zIndex: -1,
+          }}>
+          <Text style={{...FONTS.h4, color: COLORS.text}}>
+            Goods special for pet
+          </Text>
+          <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity
+              style={styles.iconGrid}
+              onPress={() => {
+                settypeList('col');
+              }}>
+              <IconF name="bars" size={15} color={COLORS.white} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.iconGrid}
+              onPress={() => {
+                settypeList('grid');
+              }}>
+              <IconF name="th-large" size={15} color={COLORS.white} />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* END TITLE LIST PRODUCT */}
+        {/* LIST PRODUCT */}
+        <View
+          style={{
+            width,
+            height: height * 0.5,
+            width,
+            alignItems: 'center',
+          }}>
+          {products && products.length > 0 ? (
+            <FlatList
+              data={products}
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              numColumns={typeList === 'col' ? 1 : 2}
+              key={typeList === 'col' ? 'ONE COLUMN' : 'TWO COLUMN'}
+              renderItem={({item}) => {
+                if (typeList === 'col') {
+                  return (
+                    <ProductItem
+                      name={item.name}
+                      price={item.price}
+                      description={item.overView}
+                      image={item.images[0]}
+                      onClick={() => {
+                        navigation.navigate('ProductDetailScreen', {
+                          id: item._id,
+                        });
+                      }}
+                      addToCart={() => {}}
+                    />
+                  );
+                } else {
+                  return (
+                    <GridProductItem
+                      name={item.name}
+                      price={item.price}
+                      overview={item.overView}
+                      image={item.images[0]}
+                      onClick={() => {
+                        navigation.navigate('ProductDetailScreen', {
+                          id: item._id,
+                        });
+                      }}
+                      addToCart={() => {}}
+                    />
+                  );
+                }
+              }}
+              keyExtractor={(item, index) =>
+                typeList === 'col' ? index.toString() : item._id
+              }
+            />
+          ) : (
+            <ActivityIndicator size="large" color={COLORS.primary} />
+          )}
+        </View>
       </SafeAreaView>
-      <Image
-        style={{width: 100, height: 100}}
-        source={{
-          uri:
-            'http://localhost:3001/uploads/images/2021-03-22T20:02:48.801Zcan%20cau.jpeg',
-        }}
-      />
     </View>
   );
 };
@@ -155,20 +259,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     justifyContent: 'space-between',
     alignItems: 'center',
+    height: height * 0.05,
   },
   category: {flexDirection: 'row'},
   search: {
+    borderColor: 'transparent',
     width: width * 0.9,
     backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 5,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.1,
     shadowRadius: 3.84,
 
-    elevation: 5,
+    elevation: 3,
   },
   textHeader: {
     color: '#333',
@@ -189,10 +295,19 @@ const styles = StyleSheet.create({
       width: 0,
       height: 5,
     },
-    shadowOpacity: 0.36,
+    shadowOpacity: 0.1,
     shadowRadius: 6.68,
 
-    elevation: 11,
+    elevation: 8,
     opacity: 0.95,
+  },
+  iconGrid: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+    backgroundColor: COLORS.primary,
+    padding: 5,
+    borderRadius: 5,
+    height: 25,
   },
 });
