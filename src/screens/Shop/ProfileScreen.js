@@ -11,13 +11,13 @@ import {
 } from 'react-native';
 
 import * as authActions from '../../redux/actions/authActions';
-import * as userActions from '../../redux/actions/userActions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from 'react-redux';
 import ListItemProfile from './components/ListItemProfile';
 import {Item, List} from 'native-base';
 import {COLORS, FONTS, height} from '../../constants/theme';
 import {color} from 'react-native-reanimated';
+import IconF from 'react-native-vector-icons/FontAwesome';
 
 const ProfileScreen = ({navigation}) => {
   const [isloading, setisloading] = useState(false);
@@ -27,6 +27,21 @@ const ProfileScreen = ({navigation}) => {
     <View style={{flex: 1, backgroundColor: COLORS.background}}>
       {/* HEADER  */}
       <View style={styles.header}>
+        <IconF
+          name="arrow-left"
+          size={20}
+          color={COLORS.text}
+          style={{
+            padding: 10,
+            position: 'absolute',
+            top: Platform.OS === 'android' ? 10 : 10,
+            left: 20,
+            padding: 10,
+          }}
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
+        />
         {isloading ? (
           <ActivityIndicator color="red" />
         ) : (
@@ -86,6 +101,19 @@ const ProfileScreen = ({navigation}) => {
         </Text>
         <ListItemProfile iconLeft="list-alt" title="Terms Conditions" />
       </View>
+      <Text
+        style={{
+          ...FONTS.h3,
+          color: COLORS.primary,
+          marginTop: 20,
+          marginLeft: 20,
+        }}
+        onPress={async () => {
+          await AsyncStorage.removeItem('@token');
+          dispatch(authActions.logout());
+        }}>
+        Log out
+      </Text>
     </View>
   );
 };

@@ -27,6 +27,7 @@ import {ActionSheet, Item, Input} from 'native-base';
 
 import API from '../../config/configAPI';
 import * as productActions from '../../redux/actions/productActions';
+import * as cartActions from '../../redux/actions/cartActions';
 import CarouselProduct from './components/CarouselProduct';
 import Loading from './components/Loading';
 import CommentProductDetail from './components/CommentProductDetail';
@@ -309,9 +310,20 @@ const ProductDetailScreen = ({navigation, route}) => {
           <TouchableOpacity
             style={styles.add}
             onPress={() => {
-              onAddToCart();
+              dispatch(
+                cartActions.addToCart(
+                  productSelect._id,
+                  productSelect.name,
+                  productSelect.price,
+                  productSelect.images[0],
+                  selectQty,
+                ),
+              );
+              setModalVisible(false);
             }}>
-            <Text>ADD TO CART</Text>
+            <Text style={{...FONTS.body4, color: COLORS.white}}>
+              Add to cart
+            </Text>
           </TouchableOpacity>
         </View>
       </Modal>

@@ -15,11 +15,12 @@ import Icon from '../../constants/icon';
 import CarouselHome from './components/Carousel';
 import IconF from 'react-native-vector-icons/FontAwesome';
 import {useDispatch, useSelector} from 'react-redux';
-import {ActionSheet, Item, Input} from 'native-base';
+import {ActionSheet, Item, Input, Toast} from 'native-base';
 import ItemSearch from './components/ItemSearch';
 import API from '../../config/configAPI';
 import * as productActions from '../../redux/actions/productActions';
 import * as userActions from '../../redux/actions/userActions';
+import * as cartActions from '../../redux/actions/cartActions';
 import ProductItem from './components/ProductItem';
 import GridProductItem from './components/GridProductItem';
 var BUTTONS = ['All', 'Foods', 'Toys', 'Medicine', 'Cancel'];
@@ -216,7 +217,17 @@ const HomeScreen = ({navigation}) => {
                           id: item._id,
                         });
                       }}
-                      addToCart={() => {}}
+                      addToCart={() => {
+                        dispatch(
+                          cartActions.addToCart(
+                            item._id,
+                            item.name,
+                            item.price,
+                            item.images[0],
+                            1,
+                          ),
+                        );
+                      }}
                     />
                   );
                 } else {
@@ -231,7 +242,24 @@ const HomeScreen = ({navigation}) => {
                           id: item._id,
                         });
                       }}
-                      addToCart={() => {}}
+                      addToCart={() => {
+                        dispatch(
+                          cartActions.addToCart(
+                            item._id,
+                            item.name,
+                            item.price,
+                            item.images[0],
+                            1,
+                          ),
+                        );
+
+                        Toast.show({
+                          text: 'Add to cart sucees',
+                          duration: 500,
+                          type: 'success',
+                          position: 'top',
+                        });
+                      }}
                     />
                   );
                 }

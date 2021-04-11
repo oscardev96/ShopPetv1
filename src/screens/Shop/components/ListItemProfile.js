@@ -26,5 +26,6 @@ const styles = StyleSheet.create({
   icon: {
     color: '#333',
     fontSize: 20,
+    width: 30,
   },
 });

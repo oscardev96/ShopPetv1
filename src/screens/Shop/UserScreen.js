@@ -11,7 +11,11 @@ import {Input, Label, Item, Icon, Form} from 'native-base';
 import {width, height, COLORS, FONTS} from '../../constants/theme';
 import IconF from 'react-native-vector-icons/FontAwesome';
 import * as userActions from '../../redux/actions/userActions';
+import * as authActions from '../../redux/actions/authActions';
+import ImagePicker from 'react-native-image-crop-picker';
 import {useDispatch, useSelector} from 'react-redux';
+import Modal from 'react-native-modal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const UserScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const dataUser = route.params;
@@ -22,12 +26,67 @@ const UserScreen = ({navigation, route}) => {
   const [phone, setphone] = useState(dataUser.phone);
   const [address, setaddress] = useState(dataUser.address);
   const [name, setname] = useState(dataUser.name);
+  const [isModalVisible, setModalVisible] = useState(false);
   const SaveAction = () => {
     let data = {email, phone, address, username, name, avatar};
+    dispatch(userActions.editUser(data, navigation));
   };
 
+  const choosePhoto = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      setAvatar(image.path);
+      console.log(image.path);
+      setModalVisible(false);
+    });
+  };
+  const makePhoto = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      setModalVisible(false);
+      setAvatar(image.sourceURL);
+    });
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
+      <Modal
+        isVisible={isModalVisible}
+        onBackdropPress={() => setModalVisible(false)}
+        onSwipeComplete={() => setModalVisible(false)}
+        swipeDirection="down"
+        backdropOpacity={0}>
+        <View style={styles.modal}>
+          <Text style={{...FONTS.body2, color: COLORS.text}}>
+            Up load photo
+          </Text>
+          <TouchableOpacity
+            style={styles.btnPhoto}
+            onPress={() => {
+              setModalVisible(false);
+              makePhoto();
+            }}>
+            <Text style={{...FONTS.body4, color: COLORS.white}}>
+              Make photo from camera
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.btnPhoto}
+            onPress={() => {
+              // setModalVisible(false);
+              choosePhoto();
+            }}>
+            <Text style={{...FONTS.body4, color: COLORS.white}}>
+              Choose photo from library
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
       <View style={styles.header}>
         <IconF
           size={20}
@@ -48,7 +107,9 @@ const UserScreen = ({navigation, route}) => {
 
         <Text
           style={{...FONTS.h4, color: COLORS.primary, marginTop: 10}}
-          onPress={() => {}}>
+          onPress={() => {
+            setModalVisible(true);
+          }}>
           Change photo
         </Text>
       </View>
@@ -125,26 +186,25 @@ const UserScreen = ({navigation, route}) => {
               defaultValue={dataUser.address ? dataUser.address : ''}
             />
           </Item>
+
+          <View
+            style={{
+              justifyContent: 'center',
+              alignSelf: 'center',
+            }}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => {
+                SaveAction();
+              }}>
+              <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 18}}>
+                Save
+              </Text>
+            </TouchableOpacity>
+          </View>
         </Form>
       </View>
       {/* END FORM */}
-      <View
-        style={{
-          position: 'absolute',
-          bottom: 30,
-          justifyContent: 'center',
-          alignSelf: 'center',
-        }}>
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => {
-            SaveAction();
-          }}>
-          <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 18}}>
-            Save
-          </Text>
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };
@@ -190,4 +250,24 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   textIpnput: {...FONTS.body3, color: COLORS.text, marginTop: 5},
+  modal: {
+    width: width - 10,
+    height: height * 0.3,
+    backgroundColor: COLORS.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 5,
+    alignSelf: 'center',
+    borderRadius: 10,
+  },
+  btnPhoto: {
+    width: 300,
+    height: 50,
+    backgroundColor: COLORS.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginTop: 20,
+  },
 });
