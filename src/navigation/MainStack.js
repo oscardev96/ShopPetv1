@@ -15,9 +15,12 @@ import UserScreen from '../screens/Shop/UserScreen';
 import {SIZES, COLORS, width, height, viewBox} from '../constants/theme';
 import Icon from '../constants/icon';
 import {Platform} from 'react-native';
+import {useSelector} from 'react-redux';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
 const HomeTab = () => {
+  const numberCart = useSelector(state => state.cartReducers.numberCart);
   const tabBarOptions = {
     showLabel: false,
     style: {
@@ -73,7 +76,7 @@ const HomeTab = () => {
     },
   });
   const cartOptions = {
-    tabBarBadge: 9,
+    tabBarBadge: numberCart != 0 ? numberCart : null,
     tabBarBadgeStyle: {
       position: 'absolute',
       top: Platform.OS === 'android' ? 15 : 0,
