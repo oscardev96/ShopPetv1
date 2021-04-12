@@ -10,6 +10,7 @@ import {
 function* onGetAllOrder(action) {
   try {
     let result = yield API.get('/orders');
+
     yield put({type: GET_ALL_ORDER_SUCCESS, data: result.data});
   } catch (error) {
     console.log(error);

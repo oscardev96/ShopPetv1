@@ -26,7 +26,12 @@ const GridProductItem = ({
       <View style={styles.info}>
         <Text
           numberOfLines={1}
-          style={{...FONTS.body3, color: COLORS.text, marginLeft: 15}}>
+          style={{
+            ...FONTS.body3,
+            color: COLORS.text,
+            marginLeft: 15,
+            paddingRight: 10,
+          }}>
           {name}
         </Text>
         <Text

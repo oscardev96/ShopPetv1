@@ -7,7 +7,7 @@ import {
 const initialState = {
   isLoad: true,
   listOrder: [],
-  OrderItem: {},
+  OrderItem: null,
 };
 
 export default (state = initialState, action) => {

@@ -80,6 +80,8 @@ const HomeTab = () => {
     tabBarBadgeStyle: {
       position: 'absolute',
       top: Platform.OS === 'android' ? 15 : 0,
+      backgroundColor: COLORS.primary,
+      color: COLORS.white,
     },
   };
   return (

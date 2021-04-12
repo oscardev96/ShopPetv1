@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   cartContainer: {
     width: width,
 
-    height: height * 0.6,
+    height: height * 0.55,
   },
   bottom: {
     position: 'absolute',

@@ -91,6 +91,25 @@ const CheckOutScreen = ({navigation}) => {
             </Text>
           </View>
         )}
+        <View style={{height: height * 0.2, width}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              height: 100,
+              paddingHorizontal: 10,
+              backgroundColor: COLORS.white,
+              borderBottomColor: COLORS.background,
+              borderBottomWidth: 1,
+              alignItems: 'center',
+            }}>
+            <View>
+              <Text>Delivery Address</Text>
+              <Text>{user.address}</Text>
+            </View>
+            <IconF name="chevron-right" size={20} />
+          </View>
+        </View>
       </View>
       {/* end list Item */}
       <View style={styles.bottom}>
@@ -150,7 +169,7 @@ const styles = StyleSheet.create({
   cartContainer: {
     width: width,
 
-    height: height * 0.6,
+    height: height * 0.7,
   },
   bottom: {
     position: 'absolute',
