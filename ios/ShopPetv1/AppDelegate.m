@@ -9,6 +9,7 @@
 #import <RNGoogleSignin/RNGoogleSignin.h>
 #import <UserNotifications/UserNotifications.h>
 #import <RNCPushNotificationIOS.h>
+#import "RNSplashScreen.h"
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
 #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
@@ -58,6 +59,7 @@ static void InitializeFlipper(UIApplication *application) {
                              didFinishLaunchingWithOptions:launchOptions];
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
+  [RNSplashScreen show];
   return YES;
 }
 - (BOOL)application:(UIApplication *)application
