@@ -21,6 +21,9 @@ const Tab = createBottomTabNavigator();
 
 const HomeTab = () => {
   const numberCart = useSelector(state => state.cartReducers.numberCart);
+  const numberNotification = useSelector(
+    state => state.notifyReducers.numberNofityNew,
+  );
   const tabBarOptions = {
     showLabel: false,
     style: {
@@ -84,6 +87,15 @@ const HomeTab = () => {
       color: COLORS.white,
     },
   };
+  const notifyOptions = {
+    tabBarBadge: numberNotification != 0 ? numberNotification : null,
+    tabBarBadgeStyle: {
+      position: 'absolute',
+      top: Platform.OS === 'android' ? 15 : 0,
+      backgroundColor: COLORS.primary,
+      color: COLORS.white,
+    },
+  };
   return (
     <Tab.Navigator
       headerMode={false}
@@ -91,7 +103,11 @@ const HomeTab = () => {
       tabBarOptions={tabBarOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Cart" component={CartScreen} options={cartOptions} />
-      <Tab.Screen name="Notification" component={NotificationScreen} />
+      <Tab.Screen
+        name="Notification"
+        component={NotificationScreen}
+        options={notifyOptions}
+      />
       <Tab.Screen name="Chat" component={ChatScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
