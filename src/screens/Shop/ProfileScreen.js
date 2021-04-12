@@ -15,8 +15,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from 'react-redux';
 import ListItemProfile from './components/ListItemProfile';
 import {Item, List} from 'native-base';
-import {COLORS, FONTS, height} from '../../constants/theme';
-import {color} from 'react-native-reanimated';
+import {COLORS, FONTS, height, width} from '../../constants/theme';
+
 import IconF from 'react-native-vector-icons/FontAwesome';
 
 const ProfileScreen = ({navigation}) => {
@@ -27,28 +27,33 @@ const ProfileScreen = ({navigation}) => {
     <View style={{flex: 1, backgroundColor: COLORS.background}}>
       {/* HEADER  */}
       <View style={styles.header}>
-        <IconF
-          name="arrow-left"
-          size={20}
-          color={COLORS.text}
+        <View
           style={{
-            padding: 10,
-            position: 'absolute',
-            top: Platform.OS === 'android' ? 10 : 10,
-            left: 20,
-            padding: 10,
-          }}
-          onPress={() => {
-            navigation.navigate('Home');
-          }}
-        />
-        {isloading ? (
-          <ActivityIndicator color="red" />
-        ) : (
-          <Text style={{...FONTS.h1, color: COLORS.text}}>{dataUser.name}</Text>
-        )}
+            width: width * 0.4,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            height: height * 0.15,
+            alignItems: 'center',
+          }}>
+          <IconF
+            name="arrow-left"
+            size={20}
+            color={COLORS.text}
+            style={{}}
+            onPress={() => {
+              navigation.navigate('Home');
+            }}
+          />
+          {dataUser == null ? (
+            <ActivityIndicator color="red" />
+          ) : (
+            <Text style={{...FONTS.h2, color: COLORS.text, marginLeft: 40}}>
+              {dataUser.name}
+            </Text>
+          )}
+        </View>
 
-        {isloading ? (
+        {dataUser == null ? (
           <ActivityIndicator />
         ) : (
           <Image
@@ -67,7 +72,7 @@ const ProfileScreen = ({navigation}) => {
             iconLeft="user"
             title="Profile"
             action={() => {
-              navigation.navigate('UserScreen', dataUser);
+              navigation.navigate('UserScreen', dataUser ? dataUser : null);
             }}
           />
           <ListItemProfile
@@ -127,6 +132,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     height: height * 0.15,
     alignItems: 'center',
+    width,
   },
   image: {
     width: 70,
