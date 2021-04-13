@@ -38,6 +38,7 @@ const AppStack = () => {
         .then(() => console.log('Subscribed to HDSKY_ALL_CUSTOMERS!'));
     }
     function onNotification(notify) {
+      console.log('[ NOTIFI]', notify);
       if (notify) {
         let data = {
           body: notify.body,
@@ -64,11 +65,16 @@ const AppStack = () => {
       // navigation.navigate('NoticationScreen');
     }
     localNotificationService.cancelAllLocalNotifications();
-    // return () => {
-    //   console.log('[App] unRegister');
-    //   fcmService.unRegister();
-    //   localNotificationService.unregister();
-    // };
+    localNotificationService.pushNotificationScheduled(
+      'My Notification Message',
+      new Date(Date.now() + 30 * 1000), // (required)
+    );
+    localNotificationService.cancelAllLocalNotifications();
+    return () => {
+      console.log('[App] unRegister');
+      fcmService.unRegister();
+      localNotificationService.unregister();
+    };
   }, []);
   const [loading, setloading] = useState(true);
   const isLogin = useSelector(state => state.authReducers.isLogin);
