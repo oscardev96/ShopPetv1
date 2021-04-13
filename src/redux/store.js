@@ -8,7 +8,7 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['authReducers', 'cartReducers'],
+  whitelist: ['authReducers', 'cartReducers', 'notifyReducers'],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = createStore(

@@ -54,6 +54,7 @@
 		91774871261E54E5005CB2D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		91774901261E5F57005CB2D3 /* ShopPetv1-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShopPetv1-Bridging-Header.h"; sourceTree = "<group>"; };
 		91774902261E5F58005CB2D3 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		91D69CEC2624C3A400E6E055 /* ShopPetv1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ShopPetv1.entitlements; path = ShopPetv1/ShopPetv1.entitlements; sourceTree = "<group>"; };
 		D995547F7A031825C7FE4A79 /* Pods-ShopPetv1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopPetv1.release.xcconfig"; path = "Target Support Files/Pods-ShopPetv1/Pods-ShopPetv1.release.xcconfig"; sourceTree = "<group>"; };
 		E6D96F47743048A094F0E546 /* libPods-ShopPetv1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShopPetv1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -99,6 +100,7 @@
 		13B07FAE1A68108700A75B9A /* ShopPetv1 */ = {
 			isa = PBXGroup;
 			children = (
+				91D69CEC2624C3A400E6E055 /* ShopPetv1.entitlements */,
 				91774871261E54E5005CB2D3 /* GoogleService-Info.plist */,
 				912C86D0261BBCEE007A31F1 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -530,6 +532,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ShopPetv1/ShopPetv1.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ShopPetv1/Info.plist;
@@ -557,6 +560,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ShopPetv1/ShopPetv1.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = ShopPetv1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
