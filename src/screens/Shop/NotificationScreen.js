@@ -88,7 +88,7 @@ export default NotificationScreen;
 const styles = StyleSheet.create({
   list: {
     width: width,
-    height: height * 0.7,
+    height: height * 0.75,
   },
   renderItem: {
     width: width - 30,

@@ -50,7 +50,7 @@ const UserScreen = ({navigation, route}) => {
       cropping: true,
     }).then(image => {
       setModalVisible(false);
-      setAvatar(image.sourceURL);
+      setAvatar(image.path);
     });
   };
   return (

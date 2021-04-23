@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   Platform,
+  ActivityIndicator,
   SafeAreaView,
 } from 'react-native';
 import IconF from 'react-native-vector-icons/FontAwesome';
@@ -19,11 +20,12 @@ class ChatScreen extends Component {
     super(props);
     this.state = {
       chatMessages: [],
+      loading: false,
     };
   }
 
   componentDidMount() {
-    this.socket = io('http://192.168.0.101:3001');
+    this.socket = io('http://192.168.0.26:3001');
     this.getMessage();
     this.socket.on('chat message', msg => {
       this.setState(previousState => ({
@@ -145,26 +147,30 @@ class ChatScreen extends Component {
         <View style={{height: height * 0.05}}>
           <Text style={{...FONTS.body2, textAlign: 'center'}}>Chat</Text>
         </View>
-        <View
-          style={{
-            backgroundColor: COLORS.white,
-            width: width,
-            height:
-              Platform.OS === 'ios' ? height * 0.8 - 10 : height * 0.75 + 5,
-          }}>
-          <GiftedChat
-            showUserAvatar={true}
-            messages={this.state.chatMessages}
-            onSend={this.onSend}
-            user={{
-              _id: this.props.user._id,
-              avatar: this.props.user.avatar,
-              name: this.props.user.name,
-            }}
-            onQuickReply={quickReply => this.onQuickReply(quickReply)}
-            renderSend={this._renderSend}
-          />
-        </View>
+        {this.props.user ? (
+          <View
+            style={{
+              backgroundColor: COLORS.white,
+              width: width,
+              height:
+                Platform.OS === 'ios' ? height * 0.8 - 10 : height * 0.75 + 5,
+            }}>
+            <GiftedChat
+              showUserAvatar={true}
+              messages={this.state.chatMessages}
+              onSend={this.onSend}
+              user={{
+                _id: this.props.user._id,
+                avatar: this.props.user.avatar,
+                name: this.props.user.name,
+              }}
+              onQuickReply={quickReply => this.onQuickReply(quickReply)}
+              renderSend={this._renderSend}
+            />
+          </View>
+        ) : (
+          <ActivityIndicator />
+        )}
       </SafeAreaView>
     );
   }

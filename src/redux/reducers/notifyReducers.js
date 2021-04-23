@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
 
       return {
         ...state,
-        notify: state.notify.concat(action.data),
+        notify: [action.data, ...state.notify],
         numberNofity: state.numberNofity + 1,
         numberNofityNew: state.numberNofityNew + 1,
       };

@@ -33,6 +33,7 @@ const HomeScreen = ({navigation}) => {
 
   const dispatch = useDispatch();
   const search = useRef(null);
+
   const [category, setcategory] = useState('All');
   const [searchLoading, setsearchLoading] = useState(false);
   const [searchData, setsearchData] = useState(null);
@@ -118,6 +119,9 @@ const HomeScreen = ({navigation}) => {
               }}
               style={{padding: 10, marginLeft: 10}}
               placeholder="Search"
+              onPressOut={() => {
+                setsearchData(null);
+              }}
             />
             {searchLoading ? (
               <ActivityIndicator
@@ -198,7 +202,11 @@ const HomeScreen = ({navigation}) => {
           }}>
           {products && products.length > 0 ? (
             <FlatList
-              data={products}
+              data={
+                category === 'All'
+                  ? products
+                  : products.filter(item => item.category.name === category)
+              }
               removeClippedSubviews={true}
               showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}

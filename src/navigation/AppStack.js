@@ -38,7 +38,6 @@ const AppStack = () => {
         .then(() => console.log('Subscribed to HDSKY_ALL_CUSTOMERS!'));
     }
     function onNotification(notify) {
-      console.log('[ NOTIFI]', notify);
       if (notify) {
         let data = {
           body: notify.body,

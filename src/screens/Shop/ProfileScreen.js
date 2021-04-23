@@ -47,7 +47,9 @@ const ProfileScreen = ({navigation}) => {
           {dataUser == null ? (
             <ActivityIndicator color="red" />
           ) : (
-            <Text style={{...FONTS.h2, color: COLORS.text, marginLeft: 40}}>
+            <Text
+              numberOfLines={1}
+              style={{...FONTS.h2, color: COLORS.text, marginLeft: 40}}>
               {dataUser.name}
             </Text>
           )}
